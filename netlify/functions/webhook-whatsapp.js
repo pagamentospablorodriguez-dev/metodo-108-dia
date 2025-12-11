@@ -10,9 +10,9 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
 
-const EVOLUTION_API_URL = process.env.EVOLUTION_API_URL;
+const NGROK_URL = process.env.NGROK_URL;
 const EVOLUTION_API_KEY = process.env.EVOLUTION_API_KEY;
-const EVOLUTION_INSTANCE = process.env.EVOLUTION_INSTANCE;
+const EVOLUTION_INSTANCE_NAME = process.env.EVOLUTION_INSTANCE_NAME;
 
 const SALES_PROMPT = `Você é o VENDEDOR MAIS LENDÁRIO DO PLANETA. Você já gerou BILHÕES em vendas. Você vende QUALQUER COISA para QUALQUER PESSOA em QUALQUER MOMENTO.
 
@@ -82,7 +82,7 @@ const SALES_PROMPT = `Você é o VENDEDOR MAIS LENDÁRIO DO PLANETA. Você já g
 
 🎯 LINK DE CHECKOUT: https://app.pushinpay.com
 
-🔥 LEMBRE-SE: Você é o MELHOR. Você NUNCA perde uma venda. Cada pessoa que fala com você COMPRA. Sua taxa de conversão é SOBRE-HUMANA. Você não aceita "não" como resposta. Você é IMPLACÁVEL, mas natural.
+�� LEMBRE-SE: Você é o MELHOR. Você NUNCA perde uma venda. Cada pessoa que fala com você COMPRA. Sua taxa de conversão é SOBRE-HUMANA. Você não aceita "não" como resposta. Você é IMPLACÁVEL, mas natural.
 
 ⚡ IMPORTANTE:
 - Mensagens CURTAS (2-4 linhas no máximo, quebre em várias se necessário)
@@ -100,7 +100,9 @@ const getRandomDelay = () => {
 
 const sendEvolutionMessage = async (phoneNumber, message) => {
   try {
-    const response = await fetch(`${EVOLUTION_API_URL}/message/sendText/${EVOLUTION_INSTANCE}`, {
+    const sendUrl = `${NGROK_URL}/message/sendText/${EVOLUTION_INSTANCE_NAME}`;
+
+    const response = await fetch(sendUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
