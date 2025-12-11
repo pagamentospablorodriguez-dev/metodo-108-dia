@@ -232,15 +232,26 @@ exports.handler = async (event) => {
 
     const messageData = webhookData.data;
     const phoneNumber = messageData.key.remoteJid.replace('@s.whatsapp.net', '');
-    const isFromMe = messageData.key.fromMe;
 
+
+
+    
+    
+    // COMENTAR ISTO PARA TESTE:
+/*
+    const isFromMe = messageData.key.fromMe;
+    
     if (isFromMe) {
       return {
         statusCode: 200,
         body: JSON.stringify({ message: 'Message from bot, skipping' })
       };
     }
+    */
 
+
+
+    
     const messageContent = messageData.message?.conversation ||
                           messageData.message?.extendedTextMessage?.text ||
                           '';
